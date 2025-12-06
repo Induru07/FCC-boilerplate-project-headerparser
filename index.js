@@ -29,7 +29,7 @@ app.get('/api/whoami', function (req,res){
 
   //B.Get language 
   // Found in the 'accept-language' header
-  var language = req.headers['user-language'];
+  var language = req.headers['accept-language'];
 
   //C.Get Software (User Agent)
   //Found in the 'user-agent' header
