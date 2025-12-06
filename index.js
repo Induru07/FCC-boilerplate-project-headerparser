@@ -19,6 +19,31 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+//code start
+app.get('/api/whoami', function (req,res){
+
+  //A.Get IP address
+  //The IP is usually in req.ip or req.socket.remoteAddress.
+  // However, sometimes proxies (like Replit/Glitch) hide it in 'x-forwarded-for'.
+  var ipaddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+
+  //B.Get language 
+  // Found in the 'accept-language' header
+  var language = req.headers['user-language'];
+
+  //C.Get Software (User Agent)
+  //Found in the 'user-agent' header
+  var Software = req.headers['user-agent']
+
+  //D. Return the JSON Object
+  res.json({
+    ipaddress: ipaddress,
+    language: language,
+    software: Software
+  });
+});
+
+
 // your first API endpoint...
 app.get('/api/hello', function (req, res) {
   res.json({ greeting: 'hello API' });
